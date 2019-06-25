@@ -1,5 +1,4 @@
 import numpy as np
-import tensorflow as tf
 
 class Config(object):
     n_layer = 4
