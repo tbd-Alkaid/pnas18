@@ -61,7 +61,7 @@ class AllenCahn(Equation):
         self._x_init = np.zeros(self._dim)
         self._sigma = np.sqrt(2.0)
 
-    def sample(self, num_sample):
+    def sample(self, num_sample,num_time_interval,delta_t):
         dw_sample = normal.rvs(size=[num_sample,
                                      self._dim,
                                      self._num_time_interval]) * self._sqrt_delta_t
@@ -69,7 +69,8 @@ class AllenCahn(Equation):
         x_sample[:, :, 0] = np.ones([num_sample, self._dim]) * self._x_init
         for i in range(self._num_time_interval):
             x_sample[:, :, i + 1] = x_sample[:, :, i] + self._sigma * dw_sample[:, :, i]
-        return dw_sample, x_sample
+        t_sample = np.arange(0,num_time_interval) * delta_t
+        return dw_sample, x_sample,t_sample
 
     def f_tf(self, t, x, y, z):
         return y - tf.pow(y, 3)

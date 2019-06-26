@@ -14,7 +14,7 @@ from solver import FeedForwardModel
 
 
 def main():
-    problem_name0 = 'HJB'
+    problem_name0 = 'AllenCahn'
     config = get_config(problem_name0)
     bsde = get_equation(problem_name0, config.dim, config.total_time, config.num_time_interval)
     log_dir = './logs'
