@@ -37,17 +37,7 @@ def main():
                 logging.info('Y0_true: %.4e' % bsde.y_init)
             model.build()
             training_history = model.train()
-            if bsde.y_init:
-                logging.info('relative error of Y0: %s',
-                             '{:.2%}'.format(
-                                 abs(bsde.y_init - training_history[-1, 2])/bsde.y_init))
-            # save training history
-            np.savetxt('{}_training_history_{}.csv'.format(path_prefix, idx_run),
-                       training_history,
-                       fmt=['%d', '%.5e', '%.5e', '%d'],
-                       delimiter=",",
-                       header="step,loss_function,target_value,elapsed_time",
-                       comments='')
+            print(training_history)
 
 if __name__ == '__main__':
     main()
